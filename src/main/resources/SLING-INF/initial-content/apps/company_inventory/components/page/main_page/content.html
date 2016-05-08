@@ -1,0 +1,48 @@
+<div data-sly-use.page="com.github.t_h_a_l_i_s.sling_tutorial.components.page.MainPage" data-sly-unwrap>
+    <div class="page-header">
+        <h1 data-sly-text="${page.title || 'Companies' @ i18n}">Companies</h1>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createNewCompanyDialog">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ${'New Company' @ i18n}
+        </button>
+    </div>
+    <div class="alert alert-info" role="alert" data-sly-test.noCompanies="page.companies.empty">${'No companies defined' @ i18n}</div>
+    <table class="table table-striped" data-sly-test="${!noCompanies}">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>${'Name' @ i18n}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody data-sly-list.company="page.companies">
+        <tr>
+            <td>${company.count}</td>
+            <td>${company.name}</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="createNewCompanyDialog" tabindex="-1" role="dialog" aria-labelledby="createNewCompanyDialogLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="createNewCompanyDialogLabel">${'New Company' @ i18n}</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="company-name" class="control-label">${'Company Name' @ i18n}:</label>
+                            <input type="text" class="form-control" id="company-name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">${'Cancel' @ i18n}</button>
+                    <button type="button" class="btn btn-primary">${'Create' @ i18n}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "title": "Company Inventory Main Page Component",
+  "sling:resourceSuperType": "company_inventory/components/page"
+}

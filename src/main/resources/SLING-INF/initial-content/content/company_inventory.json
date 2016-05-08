@@ -1,0 +1,6 @@
+{
+    "jcr:primaryType": "sling:OrderedFolder",
+    "title": "Companies",
+    "language": "en",
+    "sling:resourceType": "company_inventory/components/page/main_page"
+}
