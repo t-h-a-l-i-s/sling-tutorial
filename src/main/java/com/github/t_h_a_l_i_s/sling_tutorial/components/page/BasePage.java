@@ -20,40 +20,42 @@ package com.github.t_h_a_l_i_s.sling_tutorial.components.page;
 */
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.scripting.SlingScriptHelper;
+import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.Model;
 import org.apache.sling.scripting.sightly.pojo.Use;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.script.Bindings;
 
 /**
  * Created by thalis on 07.05.16.
  */
-public class BasePage implements Use {
-
-    protected static final String DC_TITLE_PROPERTY = "title";
-    protected static final String DC_LANGUAGE_PROPERTY = "language";
+@Model(adaptables = Resource.class)
+public class BasePage {
 
     private static final String DEFAULT_TITLE = "Untitled";
     private static final String DEFAULT_LANGUAGE = "en";
 
+    @Inject
+    @Default(values = {DEFAULT_TITLE})
     private String title;
 
+    @Inject
+    @Default(values = {DEFAULT_LANGUAGE})
     private String language;
 
     private Boolean isUserLoggedIn;
 
     private String userName;
 
-    private SlingScriptHelper sling;
-
-    @Override
-    public void init(final Bindings bindings) {
-        final ValueMap properties = (ValueMap) bindings.get("properties");
-        this.title = StringUtils.defaultIfBlank(properties.get(DC_TITLE_PROPERTY, String.class), DEFAULT_TITLE);
-        this.language = StringUtils.defaultIfBlank(properties.get(DC_LANGUAGE_PROPERTY, String.class),
-                DEFAULT_LANGUAGE);
-        this.sling = (SlingScriptHelper) bindings.get("sling");
+    @PostConstruct
+    public void init() {
+        this.isUserLoggedIn = false;
+        this.userName = "TestUser";
     }
 
     public String getTitle() {
@@ -65,12 +67,10 @@ public class BasePage implements Use {
     }
 
     public boolean isUserLoggedIn() {
-        this.isUserLoggedIn = true;
         return isUserLoggedIn;
     }
 
     public String getUserName() {
-        this.userName = "TestUser";
         return this.userName;
     }
 

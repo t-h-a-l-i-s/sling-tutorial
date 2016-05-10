@@ -21,6 +21,7 @@ package com.github.t_h_a_l_i_s.sling_tutorial.components.page;
 
 import com.github.t_h_a_l_i_s.sling_tutorial.model.Company;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Model;
 
 import javax.script.Bindings;
 import java.util.LinkedList;
@@ -29,19 +30,10 @@ import java.util.List;
 /**
  * Created by thalis on 07.05.16.
  */
+@Model(adaptables = Resource.class)
 public class MainPage extends BasePage {
 
-    private List<Company> companies;
-
-    @Override
-    public void init(Bindings bindings) {
-        super.init(bindings);
-        final Resource resource = (Resource) bindings.get("resource");
-        this.companies = new LinkedList<>();
-        for (Resource companyResource : resource.getChildren()) {
-            this.companies.add(companyResource.adaptTo(Company.class));
-        }
-    }
+    private List<Company> companies = new LinkedList<>();
 
     public List<Company> getCompanies() {
         return companies;
