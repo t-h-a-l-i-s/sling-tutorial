@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" data-sly-use.page="com.github.t_h_a_l_i_s.sling_tutorial.components.page.BasePage">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -11,7 +11,7 @@
                 <a class="navbar-brand" href="#">${'Company Inventory App' @ i18n}</a>
             </div>
             <div class="collapse navbar-collapse" id="company-inv-navbar-collapse">
-                <p class="navbar-text navbar-right" data-sly-test.userLoggedIn="page.userLoggedIn">${'Signed in as' @ i18n} ${page.userName}</p>
+                <p class="navbar-text navbar-right" data-sly-test.userLoggedIn="${page.userLoggedIn}">${'Signed in as' @ i18n} ${page.userName}</p>
                 <button id="signOffButton" type="button" class="btn btn-default navbar-btn navbar-right" data-sly-test="${userLoggedIn}">${'Sign out' @ i18n}</button>
                 <button id="signInButton" type="button" class="btn btn-default navbar-btn navbar-right" data-sly-test="${!userLoggedIn}" data-toggle="modal" data-target="#loginDialog">${'Sign in' @ i18n}</button>
             </div>

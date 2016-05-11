@@ -90,7 +90,8 @@
                             SLING-INF/initial-content/libs/jquery-2.2.3;overwrite:=true;uninstall:=true;path:=/libs/jquery-2.2.3
                         </Sling-Initial-Content>
                         <Sling-Model-Packages>
-                            com.github.t_h_a_l_i_s.sling_tutorial.model
+                            com.github.t_h_a_l_i_s.sling_tutorial.model,
+                            com.github.t_h_a_l_i_s.sling_tutorial.components.page
                         </Sling-Model-Packages>
                     </instructions>
                 </configuration>
