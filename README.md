@@ -39,7 +39,7 @@ http port `8080` to the machine's port `32771` and the debug port `9090` to the 
 port `32772`.
 
 ----------------------
-### Docker within proxy environment (Docker Toolbox)
+### Docker Toolbox within proxy environment
 
 If you are behind a proxy, you have to create the docker machine with the environment
 variables `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY` like this:
@@ -51,9 +51,10 @@ $ docker-machine.exe create --driver virtualbox \
     --engine-env NO_PROXY=localhost,127.0.0.1,docker,docker1,docker2,docker3 default
 ```
 
-whereas the dockerX host names should be locally resolvable by adding the IP host name mappings to
-the `C:\Windows\System32\drivers\etc\hosts` file. You also have to add those environment variables
-to your Mac OSX or Windows environment variables to access to docker machine API with the `docker` command.
+whereas the dockerX host names should be locally resolvable by adding the docker machine
+IP/hostname mappings to the `/etc/hosts` or `C:\Windows\System32\drivers\etc\hosts` file.
+You also have to add those environment variables to your Mac OSX or Windows environment
+variables to access to docker machine API with the `docker` command.
 
 ----------------------
 
