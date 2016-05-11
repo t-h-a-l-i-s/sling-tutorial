@@ -38,6 +38,22 @@ That command starts up the latest Apache Sling in debug mode and binds the proce
 http port `8080` to the machine's port `32771` and the debug port `9090` to the machine's
 port `32772`.
 
+To view the log files you can either for example tail the `error.log` like this
+
+```
+$ docker exec sling-debug tail -f /opt/sling/sling/logs/error.log
+```
+
+or you mount the Sling volume into the Host OS' file system like this
+
+```
+$ docker run -p 32771:8080 -p 32772:9090 --name sling-debug \
+    -v /c/Users/<USER>/servers/slingdebug:/opt/sling/sling apachesling/sling-debug
+```
+
+It's important that the host directory lays under the user's home directory. Then you can inspect
+the log files with other tools like your IDE.
+
 ----------------------
 ### Docker Toolbox within proxy environment
 
