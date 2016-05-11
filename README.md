@@ -25,18 +25,37 @@ Port 9090 is the debug port the Sling instance is started with (see `ENV JAVA_OP
 You can build this Docker image by calling
 
 ```
-docker build -t apachesling/sling-debug .
+$ docker build -t apachesling/sling-debug .
 ```
 
 and it can be run for example by calling
 
 ```
- docker run -d -p 32771:8080 -p 32772:9090 --name sling-debug apachesling/sling-debug
+$ docker run -d -p 32771:8080 -p 32772:9090 --name sling-debug apachesling/sling-debug
 ```
 
 That command starts up the latest Apache Sling in debug mode and binds the process
 http port `8080` to the machine's port `32771` and the debug port `9090` to the machine's
 port `32772`.
+
+----------------------
+### Docker within proxy environment (Docker Toolbox)
+
+If you are behind a proxy, you have to create the docker machine with the environment
+variables `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY` like this:
+
+```
+$ docker-machine.exe create --driver virtualbox \
+    --engine-env HTTP_PROXY=http://<PROXY_HOST>:<PROXY_PORT> \
+    --engine-env HTTPS_PROXY=http://<PROXY_HOST>:<PROXY_PORT> \
+    --engine-env NO_PROXY=localhost,127.0.0.1,docker,docker1,docker2,docker3 default
+```
+
+whereas the dockerX host names should be locally resolvable by adding the IP host name mappings to
+the `C:\Windows\System32\drivers\etc\hosts` file. You also have to add those environment variables
+to your Mac OSX or Windows environment variables to access to docker machine API with the `docker` command.
+
+----------------------
 
 We also need a way to automatically deploy the created content and services by the build process.
 There are several ways to deploy but we decided to use an IDE-independent way by using the
